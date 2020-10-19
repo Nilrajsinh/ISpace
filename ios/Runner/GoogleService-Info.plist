@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>965383305086-9mi3flc9croltf09cfge1imgc9bp6p76.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.965383305086-9mi3flc9croltf09cfge1imgc9bp6p76</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCQerndXkMjGo7Dos_zkD1Su20v67Y7ccE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>965383305086</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ebrious.iSpace</string>
+	<key>PROJECT_ID</key>
+	<string>ispace-aaed3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ispace-aaed3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:965383305086:ios:9b67613cbe8dc35a00652f</string>
+	<key>DATABASE_URL</key>
+	<string>https://ispace-aaed3.firebaseio.com</string>
+</dict>
+</plist>
