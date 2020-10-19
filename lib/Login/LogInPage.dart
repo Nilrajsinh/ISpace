@@ -70,14 +70,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: OutlineButton(
                   splashColor: Colors.grey,
                   onPressed: () {
-                    signInWithGoogle().then((result) {
-                      if (result != null) {
+                    // signInWithGoogle().then((result) {
+                    //   if (result != null) {
+                    //
+                    //     Navigator
+                    //         .of(context)
+                    //         .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+                    //   }
+                    // });
 
                         Navigator
                             .of(context)
                             .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
-                      }
-                    });
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
                   highlightElevation: 0,
