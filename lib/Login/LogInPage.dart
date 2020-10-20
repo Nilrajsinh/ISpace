@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:apple_sign_in/apple_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i_space/Home/AppleSignIn.dart';
 import 'package:i_space/Home/HomePage.dart';
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                      //  Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+                        Image(image: AssetImage("Asset/Logo/google_PNG19635.png"), height: 35.0),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
@@ -115,17 +116,50 @@ class _LoginPageState extends State<LoginPage> {
 
               ),
             ),
+            SizedBox(height: 10,),
             if (appleSignInAvailable.isAvailable)
-              AppleSignInButton(
-             //   style: ButtonStyle.black, // style as needed
-                type: ButtonType.signIn, // style as needed
-                onPressed: () async{
+              Container(
+                child: OutlineButton(
+                  splashColor: Colors.grey,
+                  onPressed: () {
+                    _signInWithApple(context);
 
-                  _signInWithApple(context);
-
-
-                },
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                  highlightElevation: 0,
+                  borderSide: BorderSide(color: Colors.grey),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                         Image(image: AssetImage("Asset/Logo/apple_logo_PNG19674.png"), height: 35.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Sign in with Apple',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
+             //  AppleSignInButton(
+             // //   style: ButtonStyle.black, // style as needed
+             //    type: ButtonType.signIn, // style as needed
+             //    onPressed: () async{
+             //
+             //      _signInWithApple(context);
+             //
+             //
+             //    },
+             //  ),
 
             Spacer(),
             Padding(
@@ -176,9 +210,16 @@ class MyClipper extends CustomClipper<Path> {
 Future<void> _signInWithApple(BuildContext context) async {
   try {
     final authService = Provider.of<AuthService>(context, listen: false);
-    Navigator
-        .of(context)
-        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+
+    if (await FirebaseAuth.instance.currentUser !=null)
+      {
+        print(FirebaseAuth.instance.currentUser.uid);
+        Navigator
+            .of(context)
+            .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+      }
+    // await authService.signInWithApple();
+
     final user = await authService.signInWithApple(
         scopes: [Scope.email, Scope.fullName]);
 

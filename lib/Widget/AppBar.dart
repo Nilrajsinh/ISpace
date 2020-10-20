@@ -1,5 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:i_space/Login/LogInPage.dart';
+import 'package:i_space/Views/Pictures.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   
@@ -24,7 +27,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+          IconButton(icon: Icon(Icons.menu), onPressed: () async{
+
+            await FirebaseAuth.instance.signOut();
+            Navigator
+                .of(context)
+                .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+          }
+          ),
           Text(
             'Space',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),

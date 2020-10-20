@@ -21,12 +21,11 @@ class AuthService {
         );
         final authResult = await _firebaseAuth.signInWithCredential(credential);
         final firebaseUser = authResult.user;
-        // if (scopes.contains(Scope.fullName)) {
-        //   final updateUser = UserUpdateInfo();
-        //   updateUser.displayName =
-        //   '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}';
-        //   await firebaseUser.updateProfile(updateUser);
-        // }
+        await FirebaseAuth.instance.currentUser.updateProfile(
+          displayName:
+          '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}',
+          photoURL: 'define an url',
+        );
         return firebaseUser;
       case AuthorizationStatus.error:
         print(result.error.toString());
