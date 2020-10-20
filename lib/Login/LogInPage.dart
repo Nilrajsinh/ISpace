@@ -1,8 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:i_space/Home/AppleSignIn.dart';
 import 'package:i_space/Home/HomePage.dart';
 import 'package:i_space/Login/GoogleSignIn.dart';
+import 'package:i_space/main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,7 +19,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    final appleSignInAvailable =
+    Provider.of<AppleSignInAvailable>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -110,6 +115,17 @@ class _LoginPageState extends State<LoginPage> {
 
               ),
             ),
+            if (appleSignInAvailable.isAvailable)
+              AppleSignInButton(
+             //   style: ButtonStyle.black, // style as needed
+                type: ButtonType.signIn, // style as needed
+                onPressed: () async{
+
+                  _signInWithApple(context);
+
+
+                },
+              ),
 
             Spacer(),
             Padding(
@@ -154,5 +170,21 @@ class MyClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
+  }
+}
+
+Future<void> _signInWithApple(BuildContext context) async {
+  try {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    Navigator
+        .of(context)
+        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+    final user = await authService.signInWithApple(
+        scopes: [Scope.email, Scope.fullName]);
+
+    print('uid: ${user.uid}');
+  } catch (e) {
+    // TODO: Show alert here
+    print(e);
   }
 }
