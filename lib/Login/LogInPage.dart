@@ -7,6 +7,7 @@ import 'package:i_space/Home/HomePage.dart';
 import 'package:i_space/Login/GoogleSignIn.dart';
 import 'package:i_space/main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -73,38 +74,49 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(right:15.0,left: 15.0),
               child: Container(
-                child: OutlineButton(
-                  splashColor: Colors.grey,
-                  onPressed: () {
-                    // signInWithGoogle().then((result) {
-                    //   if (result != null) {
-                    //
-                    //     Navigator
-                    //         .of(context)
-                    //         .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
-                    //   }
-                    // });
+
+                child: OutlineGradientButton(
+                //  splashColor: Colors.grey,
+                  onTap: () {
+                    signInWithGoogle().then((result) {
+                      if (result != null) {
 
                         Navigator
                             .of(context)
                             .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+                      }
+                    });
+
+
                   },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                  highlightElevation: 0,
-                  borderSide: BorderSide(color: Colors.grey),
+                  radius: Radius.circular(30),
+                  strokeWidth: 3,
+
+                  gradient: LinearGradient(colors: [
+
+                    Colors.lightBlue[700],
+                    Colors.lightBlue[600],
+                    Colors.lightBlue[500],
+                    Colors.lightBlue[400],
+                    Colors.lightBlue[300],
+                    Colors.lightBlue[200],
+                    Colors.lightBlue[100],
+                   // Colors.lightBlue[50],
+
+                  ]),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image(image: AssetImage("Asset/Logo/google_PNG19635.png"), height: 35.0),
+                        Image(image: AssetImage("Asset/Logo/google_PNG19635.png"), height: 22.0),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            'Sign in with Google',
+                            'Sign in with Google ',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               color: Colors.grey,
                             ),
                           ),
@@ -119,28 +131,42 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 10,),
             if (appleSignInAvailable.isAvailable)
               Container(
-                child: OutlineButton(
-                  splashColor: Colors.grey,
-                  onPressed: () {
+                child: OutlineGradientButton(
+                //  splashColor: Colors.grey,
+                  onTap: () {
                     _signInWithApple(context);
 
                   },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                  highlightElevation: 0,
-                  borderSide: BorderSide(color: Colors.grey),
+                  radius:  Radius.circular(30),
+                  strokeWidth: 3,
+
+                  gradient: LinearGradient(colors: [
+                    Colors.lightBlue[700],
+                    Colors.lightBlue[600],
+                    Colors.lightBlue[500],
+                    Colors.lightBlue[400],
+                    Colors.lightBlue[300],
+                    Colors.lightBlue[200],
+                    Colors.lightBlue[100],
+                   // Colors.lightBlue[50],
+                  ],
+
+                  ),
+
+
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                         Image(image: AssetImage("Asset/Logo/apple_logo_PNG19674.png"), height: 35.0),
+                         Image(image: AssetImage("Asset/Logo/apple_logo_PNG19674.png"), height: 22.0),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            'Sign in with Apple',
+                            'Sign in with Apple ',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 17,
                               color: Colors.grey,
                             ),
                           ),
@@ -211,19 +237,22 @@ Future<void> _signInWithApple(BuildContext context) async {
   try {
     final authService = Provider.of<AuthService>(context, listen: false);
 
-    if (await FirebaseAuth.instance.currentUser !=null)
-      {
-        print(FirebaseAuth.instance.currentUser.uid);
-        Navigator
-            .of(context)
-            .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
-      }
+    if (FirebaseAuth.instance.currentUser !=null)
+    {
+      print(FirebaseAuth.instance.currentUser.uid);
+      Navigator
+          .of(context)
+          .pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Home()));
+    }
+
     // await authService.signInWithApple();
 
     final user = await authService.signInWithApple(
         scopes: [Scope.email, Scope.fullName]);
 
     print('uid: ${user.uid}');
+
+
   } catch (e) {
     // TODO: Show alert here
     print(e);

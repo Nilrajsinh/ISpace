@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:i_space/Home/AppleSignIn.dart';
+import 'package:i_space/Home/HomePage.dart';
 import 'package:i_space/Login/LogInPage.dart';
 import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +38,8 @@ class MyApp extends StatelessWidget {
     return Provider<AuthService>(
       create: (_) => AuthService(),
       child: MaterialApp(
-
-        home: LoginPage( ),
+          home: FirebaseAuth.instance.currentUser == null ? LoginPage() : Home(),
+       // home: LoginPage( ),
       ),
     );
   }

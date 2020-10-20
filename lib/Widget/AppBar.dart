@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i_space/Login/LogInPage.dart';
 import 'package:i_space/Views/Pictures.dart';
+import 'package:i_space/main.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   
@@ -39,7 +40,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             'Space',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
-          IconButton(icon: Icon(Icons.add), onPressed: () {}),
+          IconButton(icon: Icon(Icons.add), onPressed: () {
+            if (currentIndex == 0){
+              print('add to pictures');
+            }
+            else if (currentIndex == 1){
+              print('add to Video');
+            }
+            else if (currentIndex == 2){
+              print('add to Settings');
+              
+            }
+          }),
         ],
       ),
     );

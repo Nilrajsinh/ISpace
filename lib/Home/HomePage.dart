@@ -5,6 +5,7 @@ import 'package:i_space/Views/Video.dart';
 import 'package:i_space/Widget/AppBar.dart';
 import 'package:i_space/Widget/Custom_Navigation_Bar.dart';
 import 'package:i_space/main.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 
 class Home extends StatelessWidget {
   @override
