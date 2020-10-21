@@ -18,12 +18,12 @@ class Home extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         controller: pageController,
         children: <Widget>[
-          Pictures(),
-          Videos(),
+          InstagramSearchGrid(),
+          InstagramVideoGrid(),
           Settings(),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: Bottombar(),
     );
   }
 }

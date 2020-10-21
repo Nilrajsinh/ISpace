@@ -49,7 +49,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             }
             else if (currentIndex == 2){
               print('add to Settings');
-              
+
             }
           }),
         ],
