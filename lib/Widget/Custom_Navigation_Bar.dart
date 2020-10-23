@@ -34,7 +34,7 @@ class _BottombarState extends State<Bottombar> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: CustomAppBar(),
+
         body: Container(
           child: SizedBox.expand(
             child: Container(
@@ -45,7 +45,7 @@ class _BottombarState extends State<Bottombar> {
                 },
                 children: <Widget>[
                   Container(child: InstagramSearchGrid()),
-                  Container(child: InstagramVideoGrid(),),
+                  Container(child: InstagramSearchGridVideo(),),
                   Container(child: Settings(),),
 
                 ],

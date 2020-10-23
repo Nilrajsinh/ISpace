@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:i_space/Data/ImageData.dart';
+import 'package:i_space/Widget/AppBar.dart';
 
 
 
-class InstagramVideoGrid extends StatelessWidget {
-  const InstagramVideoGrid({Key key}) : super(key: key);
+class InstagramSearchGridVideo extends StatelessWidget {
+  const InstagramSearchGridVideo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: CustomAppBarVideo(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: StaggeredGridView.countBuilder(

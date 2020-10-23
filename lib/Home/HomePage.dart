@@ -13,13 +13,12 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade100,
       extendBody: true,
-      appBar: CustomAppBar(),
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: pageController,
         children: <Widget>[
           InstagramSearchGrid(),
-          InstagramVideoGrid(),
+          InstagramSearchGridVideo(),
           Settings(),
         ],
       ),
