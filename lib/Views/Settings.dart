@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:i_space/Login/LogInPage.dart';
 import 'package:i_space/Widget/AppBar.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -13,6 +15,16 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   @override
+
+  _launchURLInsta() async {
+    const url = 'https://instagram.com/ebrious._?igshid=4or13css9de6';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomSettingBar(),
@@ -47,7 +59,7 @@ class _SettingsState extends State<Settings> {
                 minWidth: 300,
                   onPressed: (){
 
-              }, child: Text('Delete My Account', style: TextStyle(
+              }, child: Text('Delete My Account..', style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),)),
@@ -64,7 +76,24 @@ class _SettingsState extends State<Settings> {
               child: FlatButton(
                   minWidth: 300,
                   onPressed: (){
+                    _launchURLInsta();
+                  }, child: Text('Follow Us On Insta', style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),)),
 
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:22.0,right: 22),
+              child: Divider(height: 12,
+                color: Colors.blue,
+              ),
+            ),
+            Center(
+              child: FlatButton(
+                  minWidth: 300,
+                  onPressed: (){
+                    Share.share('https://play.google.com/store/apps/details?id=com.ebrious.com.ebrious.iscanner');
                   }, child: Text('Invite Others', style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -107,3 +136,4 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+
