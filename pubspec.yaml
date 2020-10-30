@@ -41,6 +41,10 @@ dependencies:
   bottom_navy_bar: ^5.5.0
   share: ^0.6.5+2
   url_launcher: ^5.7.1
+  image_picker: ^0.6.7+12
+  firebase_storage: ^4.0.1
+  firebase_database: ^4.1.1
+
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
+final databaseReference = FirebaseDatabase.instance.reference();
 
 Future<String> signInWithGoogle() async {
   await Firebase.initializeApp();
@@ -27,6 +29,10 @@ Future<String> signInWithGoogle() async {
     assert(user.uid == currentUser.uid);
 
     print('signInWithGoogle succeeded: $user');
+
+    databaseReference.child(user.uid).set({
+      'email': user.email,
+    });
 
     return '$user';
   }

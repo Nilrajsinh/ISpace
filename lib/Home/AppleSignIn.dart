@@ -26,6 +26,7 @@ class AuthService {
           '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}',
           photoURL: 'define an url',
         );
+
         return firebaseUser;
       case AuthorizationStatus.error:
         print(result.error.toString());
