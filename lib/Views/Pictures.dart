@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:i_space/Data/ImageData.dart';
+import 'package:i_space/Views/ImageView.dart';
 import 'package:i_space/Widget/AppBar.dart';
 
 final databaseReference = FirebaseDatabase.instance.reference();
@@ -75,9 +76,21 @@ class _InstagramSearchGridState extends State<InstagramSearchGrid> {
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-                child: Image.network(lists[index].toString(), fit: BoxFit.cover,)),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ImageView(
+                      imgUrl: lists[index],
+                    ),
+                  ),
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                  child: Image.network(lists[index].toString(), fit: BoxFit.cover,)),
+            ),
           ),
           staggeredTileBuilder: (index) => StaggeredTile.count(
               (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
